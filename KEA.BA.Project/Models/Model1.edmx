@@ -1,0 +1,335 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="KEA.BA.ProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Citizen">
+          <Key>
+            <PropertyRef Name="CPR" />
+          </Key>
+          <Property Name="CPR" Type="bigint" Nullable="false" />
+          <Property Name="city_zip" Type="bigint" />
+          <Property Name="citzen_name" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Citizen_group">
+          <Key>
+            <PropertyRef Name="citizen_CPR" />
+            <PropertyRef Name="shopping_group_ID" />
+          </Key>
+          <Property Name="citizen_CPR" Type="bigint" Nullable="false" />
+          <Property Name="shopping_group_ID" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="zip" />
+          </Key>
+          <Property Name="zip" Type="bigint" Nullable="false" />
+          <Property Name="city_name" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Shopping_group">
+          <Key>
+            <PropertyRef Name="group_ID" />
+          </Key>
+          <Property Name="store_ID" Type="bigint" Nullable="false" />
+          <Property Name="group_ID" Type="bigint" Nullable="false" />
+          <Property Name="group_size" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Store">
+          <Key>
+            <PropertyRef Name="store_ID" />
+          </Key>
+          <Property Name="store_ID" Type="bigint" Nullable="false" />
+          <Property Name="store_name" Type="varchar(max)" />
+          <Property Name="city_ZIP" Type="bigint" />
+          <Property Name="store_address" Type="varchar(max)" />
+          <Property Name="store_size" Type="bigint" />
+        </EntityType>
+        <Association Name="FK__Citizen__city_zi__656C112C">
+          <End Role="City" Type="Self.City" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Citizen" Type="Self.Citizen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="zip" />
+            </Principal>
+            <Dependent Role="Citizen">
+              <PropertyRef Name="city_zip" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Citizen_g__citiz__68487DD7">
+          <End Role="Citizen" Type="Self.Citizen" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Citizen_group" Type="Self.Citizen_group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Citizen">
+              <PropertyRef Name="CPR" />
+            </Principal>
+            <Dependent Role="Citizen_group">
+              <PropertyRef Name="citizen_CPR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Shopping___store__6754599E">
+          <End Role="Store" Type="Self.Store" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Shopping_group" Type="Self.Shopping_group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="store_ID" />
+            </Principal>
+            <Dependent Role="Shopping_group">
+              <PropertyRef Name="store_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Store__city_ZIP__66603565">
+          <End Role="City" Type="Self.City" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Store" Type="Self.Store" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="zip" />
+            </Principal>
+            <Dependent Role="Store">
+              <PropertyRef Name="city_ZIP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KEABAProjectModelStoreContainer">
+          <EntitySet Name="Citizen" EntityType="Self.Citizen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Citizen_group" EntityType="Self.Citizen_group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shopping_group" EntityType="Self.Shopping_group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Store" EntityType="Self.Store" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Citizen__city_zi__656C112C" Association="Self.FK__Citizen__city_zi__656C112C">
+            <End Role="City" EntitySet="City" />
+            <End Role="Citizen" EntitySet="Citizen" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Citizen_g__citiz__68487DD7" Association="Self.FK__Citizen_g__citiz__68487DD7">
+            <End Role="Citizen" EntitySet="Citizen" />
+            <End Role="Citizen_group" EntitySet="Citizen_group" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Shopping___store__6754599E" Association="Self.FK__Shopping___store__6754599E">
+            <End Role="Store" EntitySet="Store" />
+            <End Role="Shopping_group" EntitySet="Shopping_group" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Store__city_ZIP__66603565" Association="Self.FK__Store__city_ZIP__66603565">
+            <End Role="City" EntitySet="City" />
+            <End Role="Store" EntitySet="Store" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KEA.BA.ProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Citizen">
+          <Key>
+            <PropertyRef Name="CPR" />
+          </Key>
+          <Property Name="CPR" Type="Int64" Nullable="false" />
+          <Property Name="city_zip" Type="Int64" />
+          <Property Name="citzen_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="City" Relationship="Self.FK__Citizen__city_zi__656C112C" FromRole="Citizen" ToRole="City" />
+          <NavigationProperty Name="Citizen_group" Relationship="Self.FK__Citizen_g__citiz__68487DD7" FromRole="Citizen" ToRole="Citizen_group" />
+        </EntityType>
+        <EntityType Name="Citizen_group">
+          <Key>
+            <PropertyRef Name="citizen_CPR" />
+            <PropertyRef Name="shopping_group_ID" />
+          </Key>
+          <Property Name="citizen_CPR" Type="Int64" Nullable="false" />
+          <Property Name="shopping_group_ID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Citizen" Relationship="Self.FK__Citizen_g__citiz__68487DD7" FromRole="Citizen_group" ToRole="Citizen" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="zip" />
+          </Key>
+          <Property Name="zip" Type="Int64" Nullable="false" />
+          <Property Name="city_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Citizen" Relationship="Self.FK__Citizen__city_zi__656C112C" FromRole="City" ToRole="Citizen" />
+          <NavigationProperty Name="Store" Relationship="Self.FK__Store__city_ZIP__66603565" FromRole="City" ToRole="Store" />
+        </EntityType>
+        <EntityType Name="Shopping_group">
+          <Key>
+            <PropertyRef Name="group_ID" />
+          </Key>
+          <Property Name="store_ID" Type="Int64" Nullable="false" />
+          <Property Name="group_ID" Type="Int64" Nullable="false" />
+          <Property Name="group_size" Type="Int64" />
+          <NavigationProperty Name="Store" Relationship="Self.FK__Shopping___store__6754599E" FromRole="Shopping_group" ToRole="Store" />
+        </EntityType>
+        <EntityType Name="Store">
+          <Key>
+            <PropertyRef Name="store_ID" />
+          </Key>
+          <Property Name="store_ID" Type="Int64" Nullable="false" />
+          <Property Name="store_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="city_ZIP" Type="Int64" />
+          <Property Name="store_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="store_size" Type="Int64" />
+          <NavigationProperty Name="City" Relationship="Self.FK__Store__city_ZIP__66603565" FromRole="Store" ToRole="City" />
+          <NavigationProperty Name="Shopping_group" Relationship="Self.FK__Shopping___store__6754599E" FromRole="Store" ToRole="Shopping_group" />
+        </EntityType>
+        <Association Name="FK__Citizen__city_zi__656C112C">
+          <End Role="City" Type="Self.City" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Citizen" Type="Self.Citizen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="zip" />
+            </Principal>
+            <Dependent Role="Citizen">
+              <PropertyRef Name="city_zip" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Citizen_g__citiz__68487DD7">
+          <End Role="Citizen" Type="Self.Citizen" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Citizen_group" Type="Self.Citizen_group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Citizen">
+              <PropertyRef Name="CPR" />
+            </Principal>
+            <Dependent Role="Citizen_group">
+              <PropertyRef Name="citizen_CPR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Store__city_ZIP__66603565">
+          <End Role="City" Type="Self.City" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Store" Type="Self.Store" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="zip" />
+            </Principal>
+            <Dependent Role="Store">
+              <PropertyRef Name="city_ZIP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Shopping___store__6754599E">
+          <End Role="Store" Type="Self.Store" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Shopping_group" Type="Self.Shopping_group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="store_ID" />
+            </Principal>
+            <Dependent Role="Shopping_group">
+              <PropertyRef Name="store_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Citizen" EntityType="Self.Citizen" />
+          <EntitySet Name="Citizen_group" EntityType="Self.Citizen_group" />
+          <EntitySet Name="City" EntityType="Self.City" />
+          <EntitySet Name="Shopping_group" EntityType="Self.Shopping_group" />
+          <EntitySet Name="Store" EntityType="Self.Store" />
+          <AssociationSet Name="FK__Citizen__city_zi__656C112C" Association="Self.FK__Citizen__city_zi__656C112C">
+            <End Role="City" EntitySet="City" />
+            <End Role="Citizen" EntitySet="Citizen" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Citizen_g__citiz__68487DD7" Association="Self.FK__Citizen_g__citiz__68487DD7">
+            <End Role="Citizen" EntitySet="Citizen" />
+            <End Role="Citizen_group" EntitySet="Citizen_group" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Store__city_ZIP__66603565" Association="Self.FK__Store__city_ZIP__66603565">
+            <End Role="City" EntitySet="City" />
+            <End Role="Store" EntitySet="Store" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Shopping___store__6754599E" Association="Self.FK__Shopping___store__6754599E">
+            <End Role="Store" EntitySet="Store" />
+            <End Role="Shopping_group" EntitySet="Shopping_group" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KEABAProjectModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Citizen">
+            <EntityTypeMapping TypeName="KEA.BA.ProjectModel.Citizen">
+              <MappingFragment StoreEntitySet="Citizen">
+                <ScalarProperty Name="CPR" ColumnName="CPR" />
+                <ScalarProperty Name="city_zip" ColumnName="city_zip" />
+                <ScalarProperty Name="citzen_name" ColumnName="citzen_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Citizen_group">
+            <EntityTypeMapping TypeName="KEA.BA.ProjectModel.Citizen_group">
+              <MappingFragment StoreEntitySet="Citizen_group">
+                <ScalarProperty Name="citizen_CPR" ColumnName="citizen_CPR" />
+                <ScalarProperty Name="shopping_group_ID" ColumnName="shopping_group_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="City">
+            <EntityTypeMapping TypeName="KEA.BA.ProjectModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="zip" ColumnName="zip" />
+                <ScalarProperty Name="city_name" ColumnName="city_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shopping_group">
+            <EntityTypeMapping TypeName="KEA.BA.ProjectModel.Shopping_group">
+              <MappingFragment StoreEntitySet="Shopping_group">
+                <ScalarProperty Name="store_ID" ColumnName="store_ID" />
+                <ScalarProperty Name="group_ID" ColumnName="group_ID" />
+                <ScalarProperty Name="group_size" ColumnName="group_size" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Store">
+            <EntityTypeMapping TypeName="KEA.BA.ProjectModel.Store">
+              <MappingFragment StoreEntitySet="Store">
+                <ScalarProperty Name="store_ID" ColumnName="store_ID" />
+                <ScalarProperty Name="store_name" ColumnName="store_name" />
+                <ScalarProperty Name="city_ZIP" ColumnName="city_ZIP" />
+                <ScalarProperty Name="store_address" ColumnName="store_address" />
+                <ScalarProperty Name="store_size" ColumnName="store_size" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

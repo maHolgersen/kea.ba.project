@@ -1,0 +1,40 @@
+﻿@model IEnumerable<KEA.BA.Project.Models.Citizen>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.citzen_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City.city_name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.citzen_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City.city_name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CPR }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CPR }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CPR })
+        </td>
+    </tr>
+}
+
+</table>

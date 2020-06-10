@@ -1,0 +1,35 @@
+﻿@model KEA.BA.Project.Models.Shopping_group
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Shopping_group</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.group_size)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.group_size)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Store.store_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Store.store_name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.group_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

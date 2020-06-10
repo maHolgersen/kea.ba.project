@@ -132,6 +132,7 @@
     <Compile Include="Controllers\CitiesController.cs" />
     <Compile Include="Controllers\CitizensController.cs" />
     <Compile Include="Controllers\Citizen_groupController.cs" />
+    <Compile Include="Controllers\CalculatorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Shopping_groupController.cs" />
     <Compile Include="Controllers\StoresController.cs" />

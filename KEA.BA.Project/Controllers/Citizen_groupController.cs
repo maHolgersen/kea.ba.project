@@ -28,7 +28,7 @@ namespace KEA.BA.Project.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Citizen_group citizen_group = db.Citizen_group.Find(id);
+            Citizen_group citizen_group = (Citizen_group)db.Citizen_group.Where(s => s.citizen_CPR == id).First();
             if (citizen_group == null)
             {
                 return HttpNotFound();
@@ -68,7 +68,7 @@ namespace KEA.BA.Project.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Citizen_group citizen_group = db.Citizen_group.Find(id);
+            Citizen_group citizen_group = db.Citizen_group.Where(s => s.citizen_CPR == id).First();
             if (citizen_group == null)
             {
                 return HttpNotFound();
@@ -101,7 +101,7 @@ namespace KEA.BA.Project.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Citizen_group citizen_group = db.Citizen_group.Find(id);
+            Citizen_group citizen_group = (Citizen_group)db.Citizen_group.Where(s => s.citizen_CPR == id).First();
             if (citizen_group == null)
             {
                 return HttpNotFound();
@@ -114,7 +114,7 @@ namespace KEA.BA.Project.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(long id)
         {
-            Citizen_group citizen_group = db.Citizen_group.Find(id);
+            Citizen_group citizen_group = (Citizen_group)db.Citizen_group.Where(s => s.citizen_CPR == id).First();
             db.Citizen_group.Remove(citizen_group);
             db.SaveChanges();
             return RedirectToAction("Index");

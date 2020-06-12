@@ -1,4 +1,4 @@
-﻿@model KEA.BA.Project.Models.Shopping_group
+﻿@model KEA.BA.Project.Models.Store
 
 @{
     ViewBag.Title = "Create";
@@ -8,41 +8,45 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Shopping_group</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.store_ID, "store_ID", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.city_ZIP, "city_zip", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("store_ID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.store_ID, "", new { @class = "text-danger" })
+                @Html.DropDownList("city_zip", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.city_ZIP, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.group_ID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.group_ID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.group_ID, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.group_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.group_ID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.group_ID, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
 
         <div class="form-group">
-            @Html.LabelFor(model => model.group_size, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.store_size, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <p>
+                <label class="control-label col-md-2">Distance</label>
+            </p>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.group_size, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.group_size, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.store_size, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.store_size, "", new { @class = "text-danger" })
             </div>
+
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create and Populate" class="btn btn-default" />
             </div>
         </div>
     </div>

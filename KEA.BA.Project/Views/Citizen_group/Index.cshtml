@@ -24,9 +24,12 @@
             @Html.DisplayFor(modelItem => item.Citizen.citzen_name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.DisplayFor(modelItem => item.shopping_group_ID)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.citizen_CPR }) |
+            @Html.ActionLink("Details", "Details", new { id=item.citizen_CPR }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.citizen_CPR })
         </td>
     </tr>
 }

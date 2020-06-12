@@ -249,6 +249,7 @@
     <Content Include="Views\Citizen_group\Details.cshtml" />
     <Content Include="Views\Citizen_group\Edit.cshtml" />
     <Content Include="Views\Citizen_group\Index.cshtml" />
+    <Content Include="Views\Shopping_group\CreateandPopulate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

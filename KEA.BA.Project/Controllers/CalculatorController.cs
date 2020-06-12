@@ -14,9 +14,10 @@ namespace KEA.BA.Project.Controllers
             return groupSize;
         }
 
-        public void CreateShoppingGroups()
+        public void CreateShoppingGroups(int groupSize, int groupID, int storeID)
         {
-
+            Shopping_groupController sg = new Shopping_groupController();
+            
         }
 
         public void PopulateGroups()
